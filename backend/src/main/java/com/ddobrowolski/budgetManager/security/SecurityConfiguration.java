@@ -39,16 +39,13 @@ import com.ddobrowolski.budgetManager.repository.UserRepository;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
         http
         .httpBasic()
         .and()
         .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/index.html", "/", "/login","/users").permitAll()
-                .antMatchers("/user", "/buy").authenticated()
-        		.antMatchers("/admin/**").hasRole("ADMIN");
-        // @formatter:on
+                .antMatchers("/index.html", "/", "/","/users").permitAll()
+                .antMatchers("/user").authenticated();
     }
 }
   
