@@ -29,6 +29,4 @@ public class Expense {
 		this.sum = sum;
 		this.user = new User(userId, "", "", new BigDecimal(0));
 	}
-	
-	
 }
