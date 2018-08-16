@@ -3,6 +3,7 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">Name</th>
+        <th scope="col">Category</th>
         <th scope="col">Sum</th>
       </tr>
     </thead>
@@ -10,6 +11,37 @@
       <tr>
         <td scope="row">Test</td>
         <td scope="col">Tst2</td>
+        <td scope="col">Tst2</td>
+      </tr>
+      <tr>
+        <td scope="row"><input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"></td>
+        <td scope="col">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Food</a>
+                  <a class="dropdown-item" href="#">Taxes</a>
+                  <a class="dropdown-item" href="#">Health, hygiene</a>
+                  <a class="dropdown-item" href="#">Clothes</a>
+                  <a class="dropdown-item" href="#">Relaxation</a>
+                  <a class="dropdown-item" href="#">Transport</a>
+                  <a class="dropdown-item" href="#">Other</a>
+                </div>
+              </div>
+        </td>
+        <td scope="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Add</button>
+                  </div>
+              </div>
+        </td>
       </tr>
     </tbody>
   </table>  
