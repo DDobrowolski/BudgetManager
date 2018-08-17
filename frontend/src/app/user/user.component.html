@@ -22,11 +22,11 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#">Food</a>
-                  <a class="dropdown-item" href="#">Taxes</a>
-                  <a class="dropdown-item" href="#">Health, hygiene</a>
-                  <a class="dropdown-item" href="#">Clothes</a>
+                  <a class="dropdown-item" href="#">Insurance</a>
+                  <a class="dropdown-item" href="#">Traveling</a>
+                  <a class="dropdown-item" href="#">Housing</a>
                   <a class="dropdown-item" href="#">Relaxation</a>
-                  <a class="dropdown-item" href="#">Transport</a>
+                  <a class="dropdown-item" href="#">Shopping</a>
                   <a class="dropdown-item" href="#">Other</a>
                 </div>
               </div>
@@ -45,9 +45,24 @@
       </tr>
     </tbody>
   </table> 
+
+  <div class="dateTime">
+  <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> 
+  </div>
 </div>
-<mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> 
+<div class="container">
+    <div style="display: block">
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [colors]="pieChartColors"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+</div>
+
