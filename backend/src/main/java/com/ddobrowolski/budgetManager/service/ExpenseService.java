@@ -1,6 +1,9 @@
 package com.ddobrowolski.budgetManager.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,10 @@ public class ExpenseService {
 	}
 	
 	public void addExpense(Expense expense) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar now = Calendar.getInstance();
+		String dateString = dateFormat.format(now.getTime()).toString();
+		expense.setDateToString(dateString);
 		expenseRepository.save(expense);
 	}
 	

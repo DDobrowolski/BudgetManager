@@ -1,6 +1,7 @@
 package com.ddobrowolski.budgetManager.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ public class Expense {
 	private Long id;
 	private String name;
 	private BigDecimal sum;
+	private String dateToString;
 	@ManyToOne
 	private User user;
 	public Expense() {}
