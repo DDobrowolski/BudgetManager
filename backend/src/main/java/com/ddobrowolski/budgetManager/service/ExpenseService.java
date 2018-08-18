@@ -32,7 +32,7 @@ public class ExpenseService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		Calendar now = Calendar.getInstance();
 		String dateString = dateFormat.format(now.getTime()).toString();
-		expense.setDateToString(dateString);
+		expense.setDateString(dateString);
 		expenseRepository.save(expense);
 	}
 	
@@ -42,5 +42,9 @@ public class ExpenseService {
 	
 	public void deleteExpense(Long id) {
 		expenseRepository.deleteById(id);
+	}
+	
+	public List<Expense> findByDateString(String dateString) {
+		return expenseRepository.findByDateString(dateString);
 	}
 }

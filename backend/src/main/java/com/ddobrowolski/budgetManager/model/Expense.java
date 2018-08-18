@@ -20,7 +20,7 @@ public class Expense {
 	private Long id;
 	private String name;
 	private BigDecimal sum;
-	private String dateToString;
+	private String dateString;
 	@ManyToOne
 	private User user;
 	public Expense() {}

@@ -24,6 +24,11 @@ public class ExpenseController {
 		return expenseService.getAllExpenses(id);
 	}
 	
+	@RequestMapping("/users/{id}/expenses/byDate/{dateString}")
+	public List<Expense> findExpensesByDateString(@PathVariable Long id, @PathVariable String dateString){
+		return expenseService.findByDateString(dateString);
+	}
+	
 	@RequestMapping("/users/{userId}/expenses/{id}")
 	public Expense getExpense(@PathVariable Long id) {
 		return expenseService.getExpense(id);
