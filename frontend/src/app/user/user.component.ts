@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule, MatCalendarHeader} from '@angular/material/datepicker';
  
 @Component({
   selector: 'app-user',
@@ -21,7 +21,6 @@ export class UserComponent implements OnInit {
   }
 
   public chartClicked(e:any):void {
-    console.log(this.date.toLocaleDateString());
     return;
   }
  
@@ -29,5 +28,7 @@ export class UserComponent implements OnInit {
     return;
   }
   
- 
+  onChange(date){
+    console.log(date.toLocaleDateString());
+  }
 }

@@ -22,8 +22,7 @@
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
-              </select>
-              
+              </select> 
         </td>
         <td scope="col">
             <div class="input-group mb-3">
@@ -42,7 +41,7 @@
 
   <div class="dateTime">
   <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "date">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "date" (ngModelChange)="onChange($event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> 
