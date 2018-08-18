@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
  
 @Component({
   selector: 'app-user',
@@ -12,18 +13,20 @@ export class UserComponent implements OnInit {
     '#ff9999', '#99b3ff', '#d1b3ff', '#b3fff0', '#669900', '#99ff99', '#ffcc99'
   ]}];
   public pieChartType:string = 'pie';
-  constructor() { }
+  date:Date;
+  constructor() {  }
 
   ngOnInit() {
-  
+
   }
 
   public chartClicked(e:any):void {
-    console.log(e);
+    console.log(this.date.toLocaleDateString());
+    return;
   }
  
   public chartHovered(e:any):void {
-    console.log(e);
+    return;
   }
   
  

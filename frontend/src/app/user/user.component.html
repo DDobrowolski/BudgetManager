@@ -16,20 +16,14 @@
       <tr>
         <td scope="row"><input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"></td>
         <td scope="col">
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Food</a>
-                  <a class="dropdown-item" href="#">Insurance</a>
-                  <a class="dropdown-item" href="#">Traveling</a>
-                  <a class="dropdown-item" href="#">Housing</a>
-                  <a class="dropdown-item" href="#">Relaxation</a>
-                  <a class="dropdown-item" href="#">Shopping</a>
-                  <a class="dropdown-item" href="#">Other</a>
-                </div>
-              </div>
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              
         </td>
         <td scope="col">
             <div class="input-group mb-3">
@@ -48,7 +42,7 @@
 
   <div class="dateTime">
   <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> 
