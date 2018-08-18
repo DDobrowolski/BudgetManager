@@ -33,10 +33,18 @@ public class ExpenseService {
 		Calendar now = Calendar.getInstance();
 		String dateString = dateFormat.format(now.getTime()).toString();
 		expense.setDateString(dateString);
+		if(expense.getSum().intValue()<0) {
+			System.out.println("Sum must be greater or equals to zero.");
+			return;
+		}
 		expenseRepository.save(expense);
 	}
 	
 	public void updateExpense(Expense expense) {
+		if(expense.getSum().intValue()<0) {
+			System.out.println("Sum must be greater or equals to zero.");
+			return;
+		}
 		expenseRepository.save(expense);
 	}
 	
