@@ -9,6 +9,7 @@ import {MatButtonModule, MatCheckboxModule, MatDatepicker, MatDatepickerModule, 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '../../node_modules/@angular/forms';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
 
 
@@ -28,7 +29,8 @@ import { FormsModule } from '../../node_modules/@angular/forms';
     MatInputModule,
     BrowserAnimationsModule,
     ChartsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,12 @@
 package com.ddobrowolski.budgetManager.service;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +56,40 @@ public class ExpenseService {
 	
 	public List<Expense> findByDateString(String dateString) {
 		return expenseRepository.findByDateString(dateString);
+	}
+	
+	public Map <String, BigDecimal> getCategorySum (Long id) {
+		Map <String, BigDecimal> categorySum = new HashMap<>();
+		categorySum.put("FOOD", new BigDecimal(0));
+		List<Expense> expenses = new ArrayList<>();
+		expenseRepository.findByUserId(id)
+		.forEach(expenses::add);
+		expenses.forEach((expense) -> {
+			System.out.println(expense.getCategory());
+			if(expense.getCategory().equals("FOOD"))
+				categorySum.put("FOOD", expense.getSum());
+			
+			else if(expense.getCategory().equals("INSURANCE"))
+				categorySum.put("INSURANCE", expense.getSum());
+			
+			else if(expense.getCategory().equals("TRAVEL"))
+				categorySum.put("TRAVEL", expense.getSum());
+			
+			else if(expense.getCategory().equals("HOUSE"))
+				categorySum.put("HOUSE", expense.getSum());
+			
+			else if(expense.getCategory().equals("RELAX"))
+				categorySum.put("RELAX", expense.getSum());
+			
+			else if(expense.getCategory().equals("SHOPPING"))
+				categorySum.put("SHOPPING", expense.getSum());
+			
+			else if(expense.getCategory().equals("OTHERS"))
+				categorySum.put("OTHERS", expense.getSum());
+			
+			else System.out.println("There is no category");
+		});
+		return categorySum;
+		
 	}
 }

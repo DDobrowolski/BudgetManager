@@ -23,12 +23,20 @@ public class Expense {
 	private String dateString;
 	@ManyToOne
 	private User user;
+	
+	public enum Category {
+		FOOD, INSURANCE, TRAVEL, HOUSE, RELAX, SHOPPING, OTHERS;
+	}
+	
+	private Category category;
 	public Expense() {}
-	public Expense(Long id, String name, BigDecimal sum, Long userId) {
+	public Expense(Long id, String name, BigDecimal sum, Long userId, Category category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.sum = sum;
+		this.category = category;
 		this.user = new User(userId, "", "", new BigDecimal(0));
+		
 	}
 }

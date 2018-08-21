@@ -2,6 +2,7 @@ package com.ddobrowolski.budgetManager.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,5 +50,10 @@ public class ExpenseController {
 	@RequestMapping(method=RequestMethod.DELETE, value="/users/{userId}/expenses/{id}")
 	public void deleteExpense(@PathVariable Long id) {
 		expenseService.deleteExpense(id);
+	}
+	
+	@RequestMapping("/users/{id}/expenses/categorysum")
+	public Map<String, BigDecimal> getCategorySum(@PathVariable Long id){
+		return expenseService.getCategorySum(id);
 	}
 }	
