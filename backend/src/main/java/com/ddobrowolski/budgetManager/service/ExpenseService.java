@@ -73,17 +73,6 @@ public class ExpenseService {
 		return categorySum;
 	}
 	
-	private void addStartingValues(Map<String, BigDecimal> map) {
-		map.put("FOOD", new BigDecimal(0));
-		map.put("INSURANCE", new BigDecimal(0));
-		map.put("TRAVEL", new BigDecimal(0));
-		map.put("HOUSE", new BigDecimal(0));
-		map.put("RELAX", new BigDecimal(0));
-		map.put("SHOPPING", new BigDecimal(0));
-		map.put("OTHERS", new BigDecimal(0));
-
-	}
-	
 	public Map <String, BigDecimal> getCategorySumByDate (String dateString) {
 		Map <String, BigDecimal> categorySum = new HashMap<>();
 		List<Expense> expenses = new ArrayList<>();
@@ -97,5 +86,15 @@ public class ExpenseService {
 			else System.out.println("There is no category");
 		});
 		return categorySum;
+	}
+	
+	private void addStartingValues(Map<String, BigDecimal> map) {
+		map.put("FOOD", new BigDecimal(0));
+		map.put("INSURANCE", new BigDecimal(0));
+		map.put("TRAVEL", new BigDecimal(0));
+		map.put("HOUSE", new BigDecimal(0));
+		map.put("RELAX", new BigDecimal(0));
+		map.put("SHOPPING", new BigDecimal(0));
+		map.put("OTHERS", new BigDecimal(0));
 	}
 }
