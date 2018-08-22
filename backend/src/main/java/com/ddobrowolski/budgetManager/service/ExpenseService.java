@@ -83,4 +83,19 @@ public class ExpenseService {
 		map.put("OTHERS", new BigDecimal(0));
 
 	}
+	
+	public Map <String, BigDecimal> getCategorySumByDate (String dateString) {
+		Map <String, BigDecimal> categorySum = new HashMap<>();
+		List<Expense> expenses = new ArrayList<>();
+		addStartingValues(categorySum);
+		expenseRepository.findByDateString(dateString)
+		.forEach(expenses::add);
+		expenses.forEach((expense) -> {
+			if (categorySum.containsKey(expense.getCategory().name())) {
+				categorySum.put(expense.getCategory().name(), categorySum.get(expense.getCategory().name()).add(expense.getSum()));
+			}
+			else System.out.println("There is no category");
+		});
+		return categorySum;
+	}
 }

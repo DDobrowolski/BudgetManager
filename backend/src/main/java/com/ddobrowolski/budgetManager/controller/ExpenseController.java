@@ -25,9 +25,14 @@ public class ExpenseController {
 		return expenseService.getAllExpenses(id);
 	}
 	
-	@RequestMapping("/users/{id}/expenses/byDate/{dateString}")
+	@RequestMapping("/users/{id}/expenses/bydate/{dateString}")
 	public List<Expense> findExpensesByDateString(@PathVariable Long id, @PathVariable String dateString){
 		return expenseService.findByDateString(dateString);
+	}
+	
+	@RequestMapping("/users/{id}/expenses/bydate/{dateString}/categorysum")
+	public  Map<String, BigDecimal> getCategorySumByDateString(@PathVariable Long id, @PathVariable String dateString){
+		return expenseService.getCategorySumByDate(dateString);
 	}
 	
 	@RequestMapping("/users/{userId}/expenses/{id}")
