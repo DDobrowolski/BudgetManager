@@ -22,14 +22,7 @@ export class UserComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.usersService.getData().subscribe(
-      data =>{ this.expenses$ = data
-        if(data){
-          let expenses2 = [this.expenses$.FOOD, this.expenses$.INSURANCE, this.expenses$.TRAVEL, this.expenses$.HOUSE, this.expenses$.RELAX, this.expenses$.SHOPPING, this.expenses$.OTHERS];
-          this.pieChartData = expenses2;
-        }
-      }
-    );
+
 
   }
 
@@ -43,7 +36,19 @@ export class UserComponent implements OnInit {
   
   onChange(date){
     console.log(date.toLocaleDateString());
+    this.changeChart();
+    this.ngOnInit();
   }
 
+  changeChart(){
+    this.usersService.getDataByDate(this.date.toLocaleDateString()).subscribe(
+      data =>{ this.expenses$ = data
+        if(data){
+          let expenses2 = [this.expenses$.FOOD, this.expenses$.INSURANCE, this.expenses$.TRAVEL, this.expenses$.HOUSE, this.expenses$.RELAX, this.expenses$.SHOPPING, this.expenses$.OTHERS];
+          this.pieChartData = expenses2;
+        }
+      }
+    );
+  }
 
 }

@@ -11,4 +11,8 @@ export class UserDataService {
      getData(){
       return this.http.get("http://localhost:8080/users/1/expenses/categorysum");
   }
+
+  getDataByDate(date:String){
+    return this.http.get("http://localhost:8080/users/1/expenses/bydate/"+date+"/categorysum")
+  }
 }

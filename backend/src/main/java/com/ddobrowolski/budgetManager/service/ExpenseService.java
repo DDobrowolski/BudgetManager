@@ -31,7 +31,7 @@ public class ExpenseService {
 	}
 	
 	public void addExpense(Expense expense) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		Calendar now = Calendar.getInstance();
 		String dateString = dateFormat.format(now.getTime()).toString();
 		expense.setDateString(dateString);
