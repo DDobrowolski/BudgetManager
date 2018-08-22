@@ -9,13 +9,13 @@ import { UserDataService } from '../service/user-data.service';
 })
 export class UserComponent implements OnInit {
   public pieChartLabels:Array<any> = ['Food', 'Insurance', 'Travelling', 'Housing', 'Relaxation', 'Shopping', 'Others'];
-  public pieChartData:Array<Number> = [100, 500, 100, 44, 86, 22, 6];
+  public pieChartData:Array<Number> = [];
   public pieChartColors:Array<any> = [{backgroundColor: [
     '#ff9999', '#99b3ff', '#d1b3ff', '#b3fff0', '#669900', '#99ff99', '#ffcc99'
   ]}];
   public pieChartType:string = 'pie';
   date:Date;
-  expenses$: Object = {id:0, name: "", sum:0};
+  expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
   constructor(private usersService: UserDataService) {
     
 
@@ -23,13 +23,17 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.usersService.getData().subscribe(
-      data => this.expenses$ = data
+      data =>{ this.expenses$ = data
+        if(data){
+          let expenses2 = [this.expenses$.FOOD, this.expenses$.INSURANCE, this.expenses$.TRAVEL, this.expenses$.HOUSE, this.expenses$.RELAX, this.expenses$.SHOPPING, this.expenses$.OTHERS];
+          this.pieChartData = expenses2;
+        }
+      }
     );
+
   }
 
   public chartClicked(e:any):void {
-    let expenses2 = [this.expenses$[0].sum, this.expenses$[1].sum, this.expenses$[0].sum, this.expenses$[1].sum, this.expenses$[0].sum, this.expenses$[1].sum, this.expenses$[0].sum];
-    this.pieChartData = expenses2;
     return;
   }
  

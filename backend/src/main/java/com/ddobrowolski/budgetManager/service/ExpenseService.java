@@ -71,7 +71,6 @@ public class ExpenseService {
 			else System.out.println("There is no category");
 		});
 		return categorySum;
-		
 	}
 	
 	private void addStartingValues(Map<String, BigDecimal> map) {
