@@ -17,7 +17,7 @@ import com.ddobrowolski.budgetManager.repository.ExpenseRepository;
 @Service
 public class ExpenseService {
 	@Autowired
-	private ExpenseRepository expenseRepository;
+	private ExpenseRepository expenseRepository; 
 	
 	public List<Expense> getAllExpenses(Long userId){
 		List<Expense> expenses = new ArrayList<>();
@@ -60,36 +60,28 @@ public class ExpenseService {
 	
 	public Map <String, BigDecimal> getCategorySum (Long id) {
 		Map <String, BigDecimal> categorySum = new HashMap<>();
-		categorySum.put("FOOD", new BigDecimal(0));
 		List<Expense> expenses = new ArrayList<>();
+		addStartingValues(categorySum);
 		expenseRepository.findByUserId(id)
 		.forEach(expenses::add);
 		expenses.forEach((expense) -> {
-			System.out.println(expense.getCategory());
-			if(expense.getCategory().equals("FOOD"))
-				categorySum.put("FOOD", expense.getSum());
-			
-			else if(expense.getCategory().equals("INSURANCE"))
-				categorySum.put("INSURANCE", expense.getSum());
-			
-			else if(expense.getCategory().equals("TRAVEL"))
-				categorySum.put("TRAVEL", expense.getSum());
-			
-			else if(expense.getCategory().equals("HOUSE"))
-				categorySum.put("HOUSE", expense.getSum());
-			
-			else if(expense.getCategory().equals("RELAX"))
-				categorySum.put("RELAX", expense.getSum());
-			
-			else if(expense.getCategory().equals("SHOPPING"))
-				categorySum.put("SHOPPING", expense.getSum());
-			
-			else if(expense.getCategory().equals("OTHERS"))
-				categorySum.put("OTHERS", expense.getSum());
-			
+			if (categorySum.containsKey(expense.getCategory().name())) {
+				categorySum.put(expense.getCategory().name(), categorySum.get(expense.getCategory().name()).add(expense.getSum()));
+			}
 			else System.out.println("There is no category");
 		});
 		return categorySum;
 		
+	}
+	
+	private void addStartingValues(Map<String, BigDecimal> map) {
+		map.put("FOOD", new BigDecimal(0));
+		map.put("INSURANCE", new BigDecimal(0));
+		map.put("TRAVEL", new BigDecimal(0));
+		map.put("HOUSE", new BigDecimal(0));
+		map.put("RELAX", new BigDecimal(0));
+		map.put("SHOPPING", new BigDecimal(0));
+		map.put("OTHERS", new BigDecimal(0));
+
 	}
 }
