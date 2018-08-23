@@ -29,6 +29,8 @@ public class User implements UserDetails {
 	private String username;
 	private String password;
 	private BigDecimal monthBudget;
+	private String role;
+	private String passwordEncrypted;
 	public User() {}
 	public User(Long id, String username, String password, BigDecimal monthBudget) {
 		super();
