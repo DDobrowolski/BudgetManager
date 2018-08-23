@@ -35,9 +35,7 @@ export class UserComponent implements OnInit {
   }
   
   onChange(date){
-    console.log(date.toLocaleDateString());
     this.changeChart();
-    this.ngOnInit();
   }
 
   changeChart(){
