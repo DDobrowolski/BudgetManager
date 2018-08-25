@@ -11,17 +11,20 @@ import { User } from '../model/User';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  constructor(private accountService: AccserviceService, public router: Router) { }
+  errorMessage: string;
+  constructor(public accountService:AccserviceService, public router: Router) { }
 
   ngOnInit() {
   }
 
   register(){
-    this.accountService.createAccount(this.user).subscribe(data => {
-      this.router.navigate(['/home']);
+    this.accountService.createAccount(this.user).subscribe(data =>{
+      this.router.navigate(['/login']);
     }, err => {
-      console.log("username already exists");
-    });
+      console.log(err);
+      this.errorMessage = "username already exists";
+    })
   }
+
 
 }

@@ -11,8 +11,8 @@ export class AccserviceService {
 
   constructor(public http: Http) { }
 
-  createAccount(user: User){
+  createAccount(user:User){
     return this.http.post('/register', user)
-    .pipe(map(resp=> resp.json()));
+    .pipe(map(resp=>resp.json()));
   }
 }

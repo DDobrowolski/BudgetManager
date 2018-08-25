@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpModule } from '../../node_modules/@angular/http';
 
 
 
@@ -34,7 +35,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserAnimationsModule,
     ChartsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

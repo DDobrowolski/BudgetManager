@@ -40,12 +40,10 @@ import com.ddobrowolski.budgetManager.repository.UserRepository;
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .httpBasic()
-        .and()
         .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/index.html", "/","/users", "/home", "/register").permitAll()
-                .antMatchers("/user").authenticated();
+                .antMatchers("/index.html", "/login", "/signup").permitAll()
+                .antMatchers("/user","/").authenticated();
     }
 }
   
