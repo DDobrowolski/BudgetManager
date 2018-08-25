@@ -42,13 +42,13 @@ public class ExpenseController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/users/{userId}/expenses")
 	public void addExpense(@RequestBody Expense expense, @PathVariable Long userId) {
-		expense.setUser(new User(userId, "", "", new BigDecimal(0)));
+		expense.setUser(new User(userId, "", "", new BigDecimal(0), ""));
 		expenseService.addExpense(expense);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/users/{userId}/expenses/{id}")
 	public void updateExpense(@RequestBody Expense expense, @PathVariable Long userId, @PathVariable Long id) {
-		expense.setUser(new User(userId, "", "", new BigDecimal(0)));
+		expense.setUser(new User(userId, "", "", new BigDecimal(0), ""));
 		expenseService.updateExpense(expense);
 	}
 	

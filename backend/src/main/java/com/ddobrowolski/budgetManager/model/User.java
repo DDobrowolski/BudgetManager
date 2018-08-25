@@ -31,13 +31,15 @@ public class User implements UserDetails {
 	private BigDecimal monthBudget;
 	private String role;
 	private String passwordEncrypted;
+	private String email;
 	public User() {}
-	public User(Long id, String username, String password, BigDecimal monthBudget) {
+	public User(Long id, String username, String password, BigDecimal monthBudget, String email) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.monthBudget = monthBudget;
+		this.email = email;
 	}
 	
 	@JsonIgnore

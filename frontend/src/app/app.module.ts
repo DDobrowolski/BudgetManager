@@ -8,8 +8,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatButtonModule, MatCheckboxModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatIconModule, MatFormFieldControl, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
-import { FormsModule } from '../../node_modules/@angular/forms';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 

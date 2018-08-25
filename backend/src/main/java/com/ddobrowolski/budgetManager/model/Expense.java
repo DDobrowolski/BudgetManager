@@ -36,7 +36,7 @@ public class Expense {
 		this.name = name;
 		this.sum = sum;
 		this.category = category;
-		this.user = new User(userId, "", "", new BigDecimal(0));
+		this.user = new User(userId, "", "", new BigDecimal(0), "");
 		
 	}
 }
