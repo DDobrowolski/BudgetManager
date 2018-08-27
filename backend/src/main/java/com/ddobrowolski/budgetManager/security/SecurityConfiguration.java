@@ -44,8 +44,8 @@ import com.ddobrowolski.budgetManager.repository.UserRepository;
         .and()
         .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/index.html", "/signup", "/login","/users").permitAll()
-                .antMatchers("/user", "/budget").authenticated();
+                .antMatchers("/index.html", "/signup", "/login").permitAll()
+                .antMatchers("/user", "/budget", "/users").authenticated();
     }
 }
   
