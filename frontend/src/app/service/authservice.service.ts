@@ -1,23 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthserviceService {
 
-  constructor(private http: HttpClient) { }
+  public isLogged = false;
 
-  logIn(credentials, callback){
+  constructor(private http: HttpClient) {
+  }
+
+  logIn(credentials, callback) {
+
     const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic' + btoa(credentials.username + ':' + credentials.password)
-    }: {});
+        authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+    } : {});
 
     this.http.get('user', {headers: headers}).subscribe(response => {
-      if (response['name']){
-        
-      }
-      return callback && callback();
-    })
+        if (response['name']) {
+            this.isLogged=true;
+            let logged = this.isLogged.toString();
+            localStorage.setItem("isLogged", logged);
+        } else {
+            console.log("nie");
+            this.isLogged = false;
+        }
+        return callback && callback();
+    });
+  }
+
+  logOut() {
+    return this.http.post("/logout", {})
+    .pipe(map((response: Response) =>{
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('isLogged');
+      this.isLogged = false;
+    }));
   }
 }

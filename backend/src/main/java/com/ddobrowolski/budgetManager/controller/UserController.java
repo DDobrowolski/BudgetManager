@@ -59,7 +59,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user")
-	public Principal user (Principal principal) {
-		return principal;
+	public Principal user (Principal user) {
+		logger.info("user logged "+user);
+		return user;
 	}
 }
