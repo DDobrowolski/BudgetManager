@@ -10,6 +10,7 @@ export class AuthserviceService {
   public isLogged = false;
 
   constructor(private http: HttpClient) {
+    this.isLogged = JSON.parse(localStorage.getItem('isLogged'));
   }
 
   logIn(credentials, callback) {
@@ -24,7 +25,6 @@ export class AuthserviceService {
             let logged = this.isLogged.toString();
             localStorage.setItem("isLogged", logged);
         } else {
-            console.log("nie");
             this.isLogged = false;
         }
         return callback && callback();

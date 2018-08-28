@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDatepickerModule, MatCalendarHeader} from '@angular/material/datepicker';
 import { UserDataService } from '../service/user-data.service';
+import { AuthserviceService } from '../service/authservice.service';
+import { Router } from '@angular/router';
  
 @Component({
   selector: 'app-user',
@@ -16,9 +18,10 @@ export class UserComponent implements OnInit {
   public pieChartType:string = 'pie';
   date:Date;
   expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
-  constructor(private usersService: UserDataService) {
-    
-
+  constructor(private usersService: UserDataService, private authService:AuthserviceService, private router:Router) {
+    if(!this.authService.isLogged)
+      this.router.navigate(['/login']);
+    else return;
     }
 
   ngOnInit() {

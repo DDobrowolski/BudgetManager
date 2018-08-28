@@ -9,17 +9,21 @@ import { User } from '../model/User';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  user: User=new User();
-  errorMessage:string;
+  user: User = new User();
   credentials = {username: "", password: ""};
-  constructor(private authService: AuthserviceService, private router: Router) { }
+  constructor(private authService: AuthserviceService, private router: Router) {
+    if (this.authService.isLogged){
+      router.navigate(['budget']);
+    }
+   }
 
   ngOnInit() {
+  
   }
 
   login() {
     this.authService.logIn(this.credentials, () => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/budget');
     });
     return false;
   }
