@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,13 +32,16 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	@Column(unique=true)
+	@NotEmpty
 	private String username;
 	@Transient
+	@NotEmpty
 	private String password;
 	private BigDecimal monthBudget;
 	private String role;
 	private String passwordEncrypted;
 	@JsonProperty(access = Access.WRITE_ONLY)
+	@NotEmpty
 	private String email;
 	public User() {}
 	public User(Long id, String username, String password, BigDecimal monthBudget, String email) {
