@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ReturnStatement } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,11 @@ export class UserDataService {
       return this.http.get("users/"+this.userId+"/expenses/categorysum");
   }
 
-  getDataByDate(date:String){
-    return this.http.get("users/"+this.userId+"/expenses/bydate/"+date+"/categorysum");
+    getDataByDate(date:String){
+      return this.http.get("users/"+this.userId+"/expenses/bydate/"+date+"/categorysum");
+  }
+
+  getExpensesData(date: String){
+    return this.http.get("users/"+this.userId+"/expenses/"+date);  
   }
 }

@@ -37,7 +37,6 @@ public class User implements UserDetails {
 	private String password;
 	private BigDecimal monthBudget;
 	private String role;
-	@Transient
 	private String passwordEncrypted;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@NotEmpty

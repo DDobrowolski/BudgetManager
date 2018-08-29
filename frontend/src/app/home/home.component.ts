@@ -25,9 +25,9 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.authService.logIn(this.credentials, () => {
-        this.router.navigate(['/budget']);
-        this.navBar.ngOnInit();
+        this.router.navigate(['/budget/'], { queryParams: { 'refresh': 1 } });
     });
+    this.navBar.ngOnInit();
     return false;
   }
 

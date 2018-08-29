@@ -8,20 +8,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="row">Test</td>
-        <td scope="col">Tst2</td>
-        <td scope="col">Tst2</td>
+      <tr *ngFor="let expense of expensesList$">
+        <td scope="row">{{ expense.name }}</td>
+        <td scope="col">{{ expense.category }}</td>
+        <td scope="col">{{ expense.sum }}</td>
       </tr>
       <tr>
         <td scope="row"><input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"></td>
         <td scope="col">
             <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option>Food</option>
+                <option>Insurance</option>
+                <option>Travelling</option>
+                <option>Housing</option>
+                <option>Relaxation</option>
+                <option>Shopping</option>
+                <option>Others</option>
               </select> 
         </td>
         <td scope="col">

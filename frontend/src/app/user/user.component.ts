@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   public pieChartType:string = 'pie';
   date:Date;
   expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
+  expensesList$: any;
   
   constructor(private usersService: UserDataService, private authService:AuthserviceService, private router:Router) {
     if(!this.authService.isLogged)
@@ -40,6 +41,7 @@ export class UserComponent implements OnInit {
   
   onChange(date){
     this.changeChart();
+    this.changeList();
   }
 
   changeChart(){
@@ -51,6 +53,12 @@ export class UserComponent implements OnInit {
         }
       }
     );
+  }
+
+  changeList(){
+    this.usersService.getExpensesData(this.date.toLocaleDateString()).subscribe(
+      data => {this.expensesList$ = data}
+    )
   }
 
 }
