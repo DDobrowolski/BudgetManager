@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -18,7 +19,9 @@ public class Expense {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	@NotNull
 	private BigDecimal sum;
+	@NotNull
 	private String dateString;
 	@ManyToOne
 	private User user;
@@ -27,6 +30,7 @@ public class Expense {
 		FOOD, INSURANCE, TRAVEL, HOUSE, RELAX, SHOPPING, OTHERS;
 	}
 	
+	@NotNull
 	private Category category;
 	public Expense() {}
 	public Expense(Long id, String name, BigDecimal sum, Long userId, Category category) {

@@ -27,7 +27,6 @@ import lombok.Data;
 public class User implements UserDetails {
 	public static enum Role{ USER }
 
-	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
@@ -35,10 +34,10 @@ public class User implements UserDetails {
 	@NotEmpty
 	private String username;
 	@Transient
-	@NotEmpty
 	private String password;
 	private BigDecimal monthBudget;
 	private String role;
+	@Transient
 	private String passwordEncrypted;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@NotEmpty

@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   public pieChartType:string = 'pie';
   date:Date;
   expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
+  
   constructor(private usersService: UserDataService, private authService:AuthserviceService, private router:Router) {
     if(!this.authService.isLogged)
       this.router.navigate(['/login']);

@@ -35,10 +35,9 @@ public class ExpenseService {
 		Calendar now = Calendar.getInstance();
 		String dateString = dateFormat.format(now.getTime()).toString();
 		expense.setDateString(dateString);
-		if(expense.getSum().intValue()<0) {
-			System.out.println("Sum must be greater or equals to zero.");
-			return;
-		}
+		
+		if(expense.getSum().intValue()<0) 
+			expense.setSum(new BigDecimal(0));
 		expenseRepository.save(expense);
 	}
 	
