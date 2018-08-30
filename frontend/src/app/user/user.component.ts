@@ -3,6 +3,7 @@ import {MatDatepickerModule, MatCalendarHeader} from '@angular/material/datepick
 import { UserDataService } from '../service/user-data.service';
 import { AuthserviceService } from '../service/authservice.service';
 import { Router } from '@angular/router';
+import { Expense } from '../model/Expense';
  
 @Component({
   selector: 'app-user',
@@ -19,11 +20,13 @@ export class UserComponent implements OnInit {
   date:Date;
   expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
   expensesList$: any;
+  expense: Expense = new Expense();
   
   constructor(private usersService: UserDataService, private authService:AuthserviceService, private router:Router) {
     if(!this.authService.isLogged)
       this.router.navigate(['/login']);
     else return;
+    this.date.toLocaleDateString();
     }
 
   ngOnInit() {
@@ -60,5 +63,9 @@ export class UserComponent implements OnInit {
       data => {this.expensesList$ = data}
     )
   }
-
+  addExpense(){
+    this.usersService.addExpense(this.expense).subscribe(data => {
+      this.ngOnInit();
+    });
+  }
 }
