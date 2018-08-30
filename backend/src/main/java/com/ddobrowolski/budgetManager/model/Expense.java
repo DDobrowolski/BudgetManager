@@ -33,9 +33,7 @@ public class Expense {
 	@NotNull
 	private Category category;
 	public Expense() {}
-	public Expense(Long id, String name, BigDecimal sum, Long userId, Category category) {
-		super();
-		this.id = id;
+	public Expense(String name, BigDecimal sum, Long userId, Category category) {
 		this.name = name;
 		this.sum = sum;
 		this.category = category;

@@ -96,4 +96,5 @@ public class ExpenseService {
 		map.put("SHOPPING", new BigDecimal(0));
 		map.put("OTHERS", new BigDecimal(0));
 	}
+	
 }
