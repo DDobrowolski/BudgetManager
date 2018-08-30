@@ -8,12 +8,11 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [NavbarComponent]
 })
 export class HomeComponent implements OnInit {
   user: User = new User();
   credentials = {username: "", password: ""};
-  constructor(private authService: AuthserviceService, private router: Router, private navBar: NavbarComponent) {
+  constructor(private authService: AuthserviceService, private router: Router) {
     if (this.authService.isLogged){
       router.navigate(['budget']);
     }
@@ -25,9 +24,8 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.authService.logIn(this.credentials, () => {
-        this.router.navigate(['/budget/'], { queryParams: { 'refresh': 1 } });
+        window.location.href = '/budget';
     });
-    this.navBar.ngOnInit();
     return false;
   }
 

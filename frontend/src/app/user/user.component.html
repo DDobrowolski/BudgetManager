@@ -1,4 +1,5 @@
 <div>
+<form role="form" (ngSubmit)="addExpense()"> 
   <table class = "table">
     <thead class="thead-light">
       <tr>
@@ -14,7 +15,6 @@
         <td scope="col">{{ expense.sum }}</td>
       </tr>
       <tr>
-        <form role="form" (ngSubmit)="addExpense()"> 
         <td scope="row"><input [(ngModel)]="expense.name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" name="expenseName"></td>
         <td scope="col">
             <select class="form-control" [(ngModel)]="expense.category" name="expenseCategory">
@@ -38,14 +38,15 @@
                   </div>
               </div>
         </td>
-      </form>
       </tr>
     </tbody>
   </table> 
+</form>
+
 
   <div class="dateTime">
   <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "date" (ngModelChange)="onChange($event)">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "date" (ngModelChange)="onChange($event)" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> 

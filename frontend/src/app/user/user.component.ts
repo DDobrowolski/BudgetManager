@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
     '#ff9999', '#99b3ff', '#d1b3ff', '#b3fff0', '#669900', '#99ff99', '#ffcc99'
   ]}];
   public pieChartType:string = 'pie';
-  date:Date;
+  date:Date = new Date();
   expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
   expensesList$: any;
   expense: Expense = new Expense();
@@ -26,11 +26,9 @@ export class UserComponent implements OnInit {
     if(!this.authService.isLogged)
       this.router.navigate(['/login']);
     else return;
-    this.date.toLocaleDateString();
     }
 
   ngOnInit() {
-
 
   }
 
@@ -65,7 +63,7 @@ export class UserComponent implements OnInit {
   }
   addExpense(){
     this.usersService.addExpense(this.expense).subscribe(data => {
-      this.ngOnInit();
+      this.onChange(this.date);
     });
   }
 }
