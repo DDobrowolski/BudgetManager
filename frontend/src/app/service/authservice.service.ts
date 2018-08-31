@@ -34,7 +34,6 @@ export class AuthserviceService {
   logOut() {
     return this.http.post("/logout", {})
     .pipe(map((response: Response) =>{
-      localStorage.removeItem('currentUser');
       localStorage.removeItem('isLogged');
       this.isLogged = false;
     }));

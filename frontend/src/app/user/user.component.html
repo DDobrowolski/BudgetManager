@@ -11,8 +11,8 @@
     <tbody>
       <tr *ngFor="let expense of expensesList$">
         <td scope="row">{{ expense.name }}</td>
-        <td scope="col">{{ expense.category }}</td>
-        <td scope="col">{{ expense.sum }}</td>
+        <td scope="col">{{ changeCategory(expense.category) }}</td>
+        <td scope="col">${{ expense.sum }}</td>
       </tr>
       <tr>
         <td scope="row"><input [(ngModel)]="expense.name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" name="expenseName"></td>

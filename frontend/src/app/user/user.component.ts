@@ -66,4 +66,21 @@ export class UserComponent implements OnInit {
       this.onChange(this.date);
     });
   }
+
+  changeCategory(category: String){
+    if(category === "FOOD")
+      return "Food";
+    if(category === "INSURANCE")
+      return "Insurance";
+    if(category === "TRAVEL")
+      return "Travelling";
+    if(category === "HOUSE")
+      return "Housing";
+    if(category === "RELAX")
+      return "Relaxation";
+    if(category === "SHOPPING")
+      return "Shopping";
+    if(category === "OTHERS")
+      return "Others";
+  }
 }
