@@ -30,10 +30,16 @@ public class ExpenseController {
 		return expenseService.findByDateString(dateString);
 	}
 	
+	@RequestMapping("/users/{id}/expenses/bymonth/{monthString}")
+	public BigDecimal getExpensesSumByMonth(@PathVariable String monthString) {
+		return expenseService.getExpensesSumByMonth(monthString);
+	}
+	
 	@RequestMapping("/users/{id}/expenses/bydate/{dateString}/categorysum")
 	public  Map<String, BigDecimal> getCategorySumByDateString(@PathVariable Long id, @PathVariable String dateString){
 		return expenseService.getCategorySumByDate(dateString);
 	}
+	
 	
 	@RequestMapping("/users/{userId}/expenses/{id}")
 	public Expense getExpense(@PathVariable Long id) {

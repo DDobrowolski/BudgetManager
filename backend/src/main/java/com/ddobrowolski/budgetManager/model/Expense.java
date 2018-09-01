@@ -23,6 +23,8 @@ public class Expense {
 	private BigDecimal sum;
 	@NotNull
 	private String dateString;
+	@NotNull
+	private String monthString;
 	@ManyToOne
 	private User user;
 	

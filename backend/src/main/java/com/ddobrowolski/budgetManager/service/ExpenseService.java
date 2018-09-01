@@ -32,9 +32,12 @@ public class ExpenseService {
 	
 	public void addExpense(Expense expense) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat monthFormat = new SimpleDateFormat("MM.yyyy");
 		Calendar now = Calendar.getInstance();
 		String dateString = dateFormat.format(now.getTime()).toString();
+		String monthString = monthFormat.format(now.getTime()).toString();
 		expense.setDateString(dateString);
+		expense.setMonthString(monthString);
 		
 		if(expense.getSum().intValue()<0) 
 			expense.setSum(new BigDecimal(0));
@@ -96,5 +99,15 @@ public class ExpenseService {
 		map.put("SHOPPING", new BigDecimal(0));
 		map.put("OTHERS", new BigDecimal(0));
 	}
-	
+
+	public BigDecimal getExpensesSumByMonth(String monthString) {
+		BigDecimal monthSum = new BigDecimal(0);
+		List<Expense> expenses = new ArrayList<>();
+		expenseRepository.findByMonthString(monthString)
+		.forEach(expenses::add);
+		expenses.forEach((expense) -> {
+			monthSum.add(expense.getSum());
+		});
+		return monthSum;
+	}
 }

@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
   }
 
   changeChart(){
-    this.usersService.getDataByDate(this.date.toLocaleDateString()).subscribe(
+    this.usersService.getDataByDate(this.date.toLocaleDateString(undefined, {day: '2-digit', month: '2-digit', year: 'numeric'})).subscribe(
       data =>{ this.expenses$ = data
         if(data){
           let expenses2 = [this.expenses$.FOOD, this.expenses$.INSURANCE, this.expenses$.TRAVEL, this.expenses$.HOUSE, this.expenses$.RELAX, this.expenses$.SHOPPING, this.expenses$.OTHERS];
@@ -57,7 +57,7 @@ export class UserComponent implements OnInit {
   }
 
   changeList(){
-    this.usersService.getExpensesData(this.date.toLocaleDateString()).subscribe(
+    this.usersService.getExpensesData(this.date.toLocaleDateString(undefined, {day: '2-digit', month: '2-digit', year: 'numeric'})).subscribe(
       data => {this.expensesList$ = data}
     )
   }

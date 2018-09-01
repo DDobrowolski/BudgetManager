@@ -19,12 +19,12 @@ export class UserDataService {
     });
   }
 
-     getData(){
-      return this.http.get("users/"+this.userId+"/expenses/categorysum");
+  getData(){
+    return this.http.get("users/"+this.userId+"/expenses/categorysum");
   }
 
-    getDataByDate(date:String){
-      return this.http.get("users/"+this.userId+"/expenses/bydate/"+date+"/categorysum");
+  getDataByDate(date:String){
+    return this.http.get("users/"+this.userId+"/expenses/bydate/"+date+"/categorysum");
   }
 
   getExpensesData(date: String){
