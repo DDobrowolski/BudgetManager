@@ -8,6 +8,6 @@ import com.ddobrowolski.budgetManager.model.Expense;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 	public List<Expense> findByUserId(Long userId);
-	public List<Expense> findByDateString(String dateString);
-	public List<Expense> findByMonthString(String monthString);
+	public List<Expense> findByDateStringAndUserId(String dateString, Long userId);
+	public List<Expense> findByMonthStringAndUserId(String monthString, Long userId);
 }

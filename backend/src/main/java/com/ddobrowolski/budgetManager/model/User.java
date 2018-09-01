@@ -1,14 +1,17 @@
 package com.ddobrowolski.budgetManager.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
@@ -41,6 +44,7 @@ public class User implements UserDetails {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@NotEmpty
 	private String email;
+
 	public User() {}
 	public User(Long id, String username, String password, BigDecimal monthBudget, String email) {
 		this.id = id;

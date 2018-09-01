@@ -27,17 +27,21 @@ public class ExpenseController {
 	
 	@RequestMapping("/users/{id}/expenses/bydate/{dateString}")
 	public List<Expense> findExpensesByDateString(@PathVariable Long id, @PathVariable String dateString){
-		return expenseService.findByDateString(dateString);
+		return expenseService.findByDateString(dateString, id);
 	}
 	
+	@RequestMapping("/users/{id}/expenses/bymonth/{monthString}/sum")
+	public BigDecimal getExpensesSumByMonth(@PathVariable Long id, @PathVariable String monthString) {
+		return expenseService.getExpensesSumByMonth(monthString, id);
+	}
 	@RequestMapping("/users/{id}/expenses/bymonth/{monthString}")
-	public BigDecimal getExpensesSumByMonth(@PathVariable String monthString) {
-		return expenseService.getExpensesSumByMonth(monthString);
+	public List<Expense> getExpensesByMonth(@PathVariable Long id, @PathVariable String monthString) {
+		return expenseService.getExpenseByMonth(monthString, id);
 	}
 	
 	@RequestMapping("/users/{id}/expenses/bydate/{dateString}/categorysum")
 	public  Map<String, BigDecimal> getCategorySumByDateString(@PathVariable Long id, @PathVariable String dateString){
-		return expenseService.getCategorySumByDate(dateString);
+		return expenseService.getCategorySumByDate(dateString, id);
 	}
 	
 	

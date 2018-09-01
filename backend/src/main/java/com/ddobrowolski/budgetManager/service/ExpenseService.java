@@ -18,6 +18,8 @@ import com.ddobrowolski.budgetManager.repository.ExpenseRepository;
 public class ExpenseService {
 	@Autowired
 	private ExpenseRepository expenseRepository; 
+	BigDecimal monthSum;
+
 	
 	public List<Expense> getAllExpenses(Long userId){
 		List<Expense> expenses = new ArrayList<>();
@@ -56,8 +58,8 @@ public class ExpenseService {
 		expenseRepository.deleteById(id);
 	}
 	
-	public List<Expense> findByDateString(String dateString) {
-		return expenseRepository.findByDateString(dateString);
+	public List<Expense> findByDateString(String dateString, Long userId) {
+		return expenseRepository.findByDateStringAndUserId(dateString, userId);
 	}
 	
 	public Map <String, BigDecimal> getCategorySum (Long id) {
@@ -75,11 +77,11 @@ public class ExpenseService {
 		return categorySum;
 	}
 	
-	public Map <String, BigDecimal> getCategorySumByDate (String dateString) {
+	public Map <String, BigDecimal> getCategorySumByDate (String dateString, Long userId) {
 		Map <String, BigDecimal> categorySum = new HashMap<>();
 		List<Expense> expenses = new ArrayList<>();
 		addStartingValues(categorySum);
-		expenseRepository.findByDateString(dateString)
+		expenseRepository.findByDateStringAndUserId(dateString, userId)
 		.forEach(expenses::add);
 		expenses.forEach((expense) -> {
 			if (categorySum.containsKey(expense.getCategory().name())) {
@@ -100,14 +102,21 @@ public class ExpenseService {
 		map.put("OTHERS", new BigDecimal(0));
 	}
 
-	public BigDecimal getExpensesSumByMonth(String monthString) {
-		BigDecimal monthSum = new BigDecimal(0);
+	public List<Expense> getExpenseByMonth(String monthString, Long userId){
+		return expenseRepository.findByMonthStringAndUserId(monthString, userId);
+	}
+	public BigDecimal getExpensesSumByMonth(String monthString, Long userId) {
+		monthSum = new BigDecimal(0);
 		List<Expense> expenses = new ArrayList<>();
-		expenseRepository.findByMonthString(monthString)
-		.forEach(expenses::add);
+		expenses = expenseRepository.findByMonthStringAndUserId(monthString, userId);
 		expenses.forEach((expense) -> {
-			monthSum.add(expense.getSum());
+			System.out.println(expense.getSum());
+			System.out.println(monthSum);
+			monthSum = monthSum.add(expense.getSum());
+			System.out.println(monthSum);
+			System.out.println(expense.getSum());
 		});
+		System.out.println(monthSum);
 		return monthSum;
 	}
 }
