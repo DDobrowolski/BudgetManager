@@ -95,9 +95,11 @@ export class UserComponent implements OnInit {
 
   deleteExpense(expenseId){
     if(confirm("Do you want to delete the expense?")){
-    this.usersService.deleteExpense(expenseId).subscribe();
-    this.onChange(this.date)}
-    else {};
+    this.usersService.deleteExpense(expenseId).subscribe(data => {
+      this.onChange(this.date);
+    });
+    }
+    else {}
   }
   getMonthSum(){
     this.usersService.getMonthSum(this.date.toLocaleDateString(undefined, {month: '2-digit', year: 'numeric'})).subscribe(data => this.monthSum = data);
