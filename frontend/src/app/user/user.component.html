@@ -6,13 +6,15 @@
         <th scope="col">Name</th>
         <th scope="col">Category</th>
         <th scope="col">Sum</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let expense of expensesList$">
+    <tbody >
+      <tr  *ngFor="let expense of expensesList$">
         <td scope="row">{{ expense.name }}</td>
         <td scope="col">{{ changeCategory(expense.category) }}</td>
         <td scope="col">${{ expense.sum }}</td>
+        <td scope="col"><a (click)="deleteExpense(expense.id)">Delete</a></td>
       </tr>
       <tr>
         <td scope="row"><input [(ngModel)]="expense.name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" name="expenseName"></td>
@@ -50,6 +52,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> 
+    <h3 >Summary this month: ${{ monthSum }}</h3>
   </div>
 </div>
 <div class="container">

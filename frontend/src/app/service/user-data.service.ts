@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReturnStatement } from '@angular/compiler';
 import { Expense } from '../model/Expense';
 
 @Injectable({
@@ -11,14 +10,18 @@ export class UserDataService {
   userId: any;
   
   constructor(private http: HttpClient) {
-     this.http.get("/user").subscribe(data => {
-      this.loggedUser = data
-       if(data){
-        this.userId = this.loggedUser.principal.id;
-          }
-    });
-  }
 
+  
+  }
+  getUserData(){
+    this.http.get("/user").subscribe(data => {
+      if(data){
+       this.loggedUser = data
+       this.userId = this.loggedUser.principal.id;
+         }
+       else console.log("error");
+   });
+  }
   getData(){
     return this.http.get("users/"+this.userId+"/expenses/categorysum");
   }
@@ -33,5 +36,13 @@ export class UserDataService {
 
   addExpense(expense: Expense){
     return this.http.post("users/"+this.userId+"/expenses", expense);
+  }
+
+  deleteExpense(id){
+    return this.http.delete("users/"+this.userId+"/expenses/"+id);
+  }
+
+  getMonthSum(month){
+    return this.http.get("users/"+this.userId+"/expenses/bymonth/"+month+"/sum");
   }
 }

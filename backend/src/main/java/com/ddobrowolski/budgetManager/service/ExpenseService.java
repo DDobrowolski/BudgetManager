@@ -110,13 +110,8 @@ public class ExpenseService {
 		List<Expense> expenses = new ArrayList<>();
 		expenses = expenseRepository.findByMonthStringAndUserId(monthString, userId);
 		expenses.forEach((expense) -> {
-			System.out.println(expense.getSum());
-			System.out.println(monthSum);
 			monthSum = monthSum.add(expense.getSum());
-			System.out.println(monthSum);
-			System.out.println(expense.getSum());
 		});
-		System.out.println(monthSum);
 		return monthSum;
 	}
 }

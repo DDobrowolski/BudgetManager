@@ -17,19 +17,22 @@ export class UserComponent implements OnInit {
     '#ff9999', '#99b3ff', '#d1b3ff', '#b3fff0', '#669900', '#99ff99', '#ffcc99'
   ]}];
   public pieChartType:string = 'pie';
+  
   date:Date = new Date();
   expenses$: any = {TRAVEL:'', OTHERS: '', RELAX: '', SHOPPING: '', INSURANCE: '', HOUSE: '', FOOD: ''};
   expensesList$: any;
   expense: Expense = new Expense();
+  monthSum: any;
   
-  constructor(private usersService: UserDataService, private authService:AuthserviceService, private router:Router) {
+  constructor( private authService:AuthserviceService,private usersService: UserDataService, private router:Router) {
     if(!this.authService.isLogged)
       this.router.navigate(['/login']);
-    else return;
+    else { 
+      this.usersService.getUserData();
+    }
     }
 
   ngOnInit() {
-
   }
 
   public chartClicked(e:any):void {
@@ -43,9 +46,11 @@ export class UserComponent implements OnInit {
   onChange(date){
     this.changeChart();
     this.changeList();
+    this.getMonthSum();
   }
 
   changeChart(){
+    if(this.usersService.userId!=undefined){
     this.usersService.getDataByDate(this.date.toLocaleDateString(undefined, {day: '2-digit', month: '2-digit', year: 'numeric'})).subscribe(
       data =>{ this.expenses$ = data
         if(data){
@@ -55,12 +60,15 @@ export class UserComponent implements OnInit {
       }
     );
   }
+}
 
   changeList(){
+    if(this.usersService.userId!=undefined){
     this.usersService.getExpensesData(this.date.toLocaleDateString(undefined, {day: '2-digit', month: '2-digit', year: 'numeric'})).subscribe(
       data => {this.expensesList$ = data}
     )
   }
+}
   addExpense(){
     this.usersService.addExpense(this.expense).subscribe(data => {
       this.onChange(this.date);
@@ -82,5 +90,13 @@ export class UserComponent implements OnInit {
       return "Shopping";
     if(category === "OTHERS")
       return "Others";
+  }
+
+  deleteExpense(expenseId){
+    this.usersService.deleteExpense(expenseId).subscribe();
+    this.ngOnInit();
+  }
+  getMonthSum(){
+    this.usersService.getMonthSum(this.date.toLocaleDateString(undefined, {month: '2-digit', year: 'numeric'})).subscribe(data => this.monthSum = data);
   }
 }
