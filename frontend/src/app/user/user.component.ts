@@ -27,12 +27,13 @@ export class UserComponent implements OnInit {
   constructor( private authService:AuthserviceService,private usersService: UserDataService, private router:Router) {
     if(!this.authService.isLogged)
       this.router.navigate(['/login']);
-    else { 
-      this.usersService.getUserData();
-    }
+    else this.ngOnInit()
     }
 
   ngOnInit() {
+    this.usersService.getUserData().then(data => {
+      this.onChange(this.date);
+    });
   }
 
   public chartClicked(e:any):void {
@@ -93,8 +94,10 @@ export class UserComponent implements OnInit {
   }
 
   deleteExpense(expenseId){
+    if(confirm("Do you want to delete the expense?")){
     this.usersService.deleteExpense(expenseId).subscribe();
-    this.ngOnInit();
+    this.onChange(this.date)}
+    else {};
   }
   getMonthSum(){
     this.usersService.getMonthSum(this.date.toLocaleDateString(undefined, {month: '2-digit', year: 'numeric'})).subscribe(data => this.monthSum = data);

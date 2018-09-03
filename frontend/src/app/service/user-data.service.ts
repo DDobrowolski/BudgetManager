@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Expense } from '../model/Expense';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,12 @@ export class UserDataService {
   
   }
   getUserData(){
-    this.http.get("/user").subscribe(data => {
+  return  this.http.get("/user").pipe(map((data => {
       if(data){
        this.loggedUser = data
-       this.userId = this.loggedUser.principal.id;
          }
        else console.log("error");
-   });
+   }))).toPromise().then(data => this.userId = this.loggedUser.principal.id);
   }
   getData(){
     return this.http.get("users/"+this.userId+"/expenses/categorysum");
