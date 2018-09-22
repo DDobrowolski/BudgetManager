@@ -18,18 +18,18 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  logOut(){
-    this.authService.logOut()
-    .subscribe(
-      data => {
-        this.router.navigateByUrl('/login');
-        this.ngOnInit();
-      },
-      error => {
-
-        return "lul";
-      }
-    )
-
+    logOut(){
+      if(confirm("Do you want to logout?")){
+      this.authService.logOut()
+      .subscribe(
+        data => {
+          this.router.navigateByUrl('/login');
+          this.ngOnInit();
+        },
+        error => {
+          return;
+        }
+      )
+    } else return;
   }
 }

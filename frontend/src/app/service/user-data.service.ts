@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class UserDataService {
-  loggedUser: any = {"principal": {"id":''}};
+  loggedUser: any = {"principal": {"id":'', "monthBudget": ''}};
   userId: any;
   
   constructor(private http: HttpClient) {

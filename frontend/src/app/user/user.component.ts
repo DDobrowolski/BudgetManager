@@ -23,6 +23,7 @@ export class UserComponent implements OnInit {
   expensesList$: any;
   expense: Expense = new Expense();
   monthSum: any;
+  monthBudget: any;
   
   constructor( private authService:AuthserviceService,private usersService: UserDataService, private router:Router) {
     if(!this.authService.isLogged)
@@ -33,6 +34,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.usersService.getUserData().then(data => {
       this.onChange(this.date);
+      this.monthBudget = this.usersService.loggedUser.principal.monthBudget;
     });
   }
 

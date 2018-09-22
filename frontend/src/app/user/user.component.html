@@ -52,7 +52,8 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> 
-    <h3 >Summary this month: ${{ monthSum }}</h3>
+    <h3 class="monthBudgetSumNormal" *ngIf="monthSum<=monthBudget">Summary this month: ${{ monthSum }} / ${{ monthBudget }}</h3>
+    <h3 class="monthBudgetSumOver" *ngIf="monthSum>monthBudget">Summary this month: ${{ monthSum }} / ${{ monthBudget }}</h3>
   </div>
 </div>
 <div class="container">

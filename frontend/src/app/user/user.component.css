@@ -10,3 +10,6 @@
     text-align: center;
 }
 
+.monthBudgetSumOver {
+    color: hsla(0, 100%, 50%, 0.637)
+}
