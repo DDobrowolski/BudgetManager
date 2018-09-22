@@ -13,3 +13,9 @@
 .monthBudgetSumOver {
     color: hsla(0, 100%, 50%, 0.637)
 }
+.modal-header, h4, .close {
+    background-color: grey;
+    color:white !important;
+    text-align: center !important;
+    font-size: 30px;
+}

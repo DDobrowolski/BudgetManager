@@ -52,6 +52,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> 
+    <div><button id="changeBudget" class="btn btn-outline-secondary" (click)="openChangeBudgetModal()">Change your month budget</button></div>
     <h3 class="monthBudgetSumNormal" *ngIf="monthSum<=monthBudget">Summary this month: ${{ monthSum }} / ${{ monthBudget }}</h3>
     <h3 class="monthBudgetSumOver" *ngIf="monthSum>monthBudget">Summary this month: ${{ monthSum }} / ${{ monthBudget }}</h3>
   </div>
@@ -67,4 +68,25 @@
                 (chartClick)="chartClicked($event)"></canvas>
       </div>
 </div>
+
+<div class="modal fade" id="changeBudgetModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:35px 50px;">
+        <button type="button" class="close" data-dismiss="modal" style="text-align: right;">&times;</button>
+        <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Change month budget</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="monthBudget"><span class="glyphicon glyphicon-user"></span> New month budget:</label>
+            <input type="text" class="form-control" id="monthBudget" placeholder="Enter new budget">
+          </div>
+          <button type="submit" class="btn btn-outline-secondary"><span class="glyphicon glyphicon-off"></span> Change</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
 

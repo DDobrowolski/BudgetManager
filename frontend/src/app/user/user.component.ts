@@ -4,7 +4,9 @@ import { UserDataService } from '../service/user-data.service';
 import { AuthserviceService } from '../service/authservice.service';
 import { Router } from '@angular/router';
 import { Expense } from '../model/Expense';
- 
+
+
+declare var $: any;
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -24,6 +26,7 @@ export class UserComponent implements OnInit {
   expense: Expense = new Expense();
   monthSum: any;
   monthBudget: any;
+  
   
   constructor( private authService:AuthserviceService,private usersService: UserDataService, private router:Router) {
     if(!this.authService.isLogged)
@@ -105,5 +108,9 @@ export class UserComponent implements OnInit {
   }
   getMonthSum(){
     this.usersService.getMonthSum(this.date.toLocaleDateString(undefined, {month: '2-digit', year: 'numeric'})).subscribe(data => this.monthSum = data);
+  }
+
+  openChangeBudgetModal(){
+    $("#changeBudgetModal").modal();
   }
 }
