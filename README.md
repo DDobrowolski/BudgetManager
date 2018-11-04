@@ -1,10 +1,10 @@
-# BudgetManager
-Simple app to manage your home budget.
+# BudgetManager <br />
+Simple app to manage your home budget. <br />
 It is build with:
-• Spring Boot \n
-• Spring Security \n
-• Angular 6 \n
-• MySQL \n
-• Bootstrap \n
+• Spring Boot <br />
+• Spring Security \<br />
+• Angular 6 \<br />
+• MySQL <br />
+• Bootstrap <br />
 ![alt text](https://i.imgur.com/QXkg4cc.png)
 
